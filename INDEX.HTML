@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Eric Onsongo | Power Systems & IT Professional</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+:root {
+  --blue: #2196c4;
+  --blue-light: #3ab5e6;
+  --blue-dark: #1a7fa8;
+  --text: #1a2332;
+  --text-muted: #6b7a8d;
+  --text-light: #9aa5b4;
+  --bg: #f0f4f8;
+  --white: #ffffff;
+  --border: rgba(33,150,196,0.13);
+}
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+/* BG ICONS */
+.bg-layer { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.bi { position: absolute; color: var(--blue); opacity: 0.06; font-size: 1.4rem; user-select: none; line-height: 1; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(240,244,248,0.88); backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  height: 60px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2.5rem;
+}
+.nav-brand { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
+.nav-av {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: #fff; font-weight: 800; font-size: 0.82rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-nm { font-weight: 600; font-size: 0.95rem; color: var(--text); }
+.nav-nm span { color: var(--blue); }
+.nav-links { display: flex; gap: 1.8rem; list-style: none; }
+.nav-links a { font-size: 0.87rem; color: var(--text-muted); text-decoration: none; font-weight: 500; transition: color .2s; }
+.nav-links a:hover { color: var(--blue); }
+.nav-cta {
+  font-size: 0.82rem; color: var(--text-muted); text-decoration: none; padding: .35rem .85rem;
+  border: 1px solid var(--border); border-radius: 8px; transition: all .2s;
+}
+.nav-cta:hover { color: var(--blue); border-color: var(--blue); background: rgba(33,150,196,.06); }
+
+/* SECTIONS */
+section { position: relative; z-index: 1; }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 2.5rem; }
+
+/* HERO */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 80px 2rem 3rem;
+}
+.badge {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: rgba(255,255,255,.82); border: 1px solid rgba(33,150,196,.22);
+  border-radius: 999px; padding: .42rem 1.1rem;
+  font-size: .8rem; color: var(--text-muted); margin-bottom: 2rem;
+  backdrop-filter: blur(8px);
+}
+.bdot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.35)} }
+
+.hero h1 {
+  font-size: clamp(3.2rem, 10vw, 7rem); font-weight: 900;
+  line-height: 1.02; letter-spacing: -0.02em; color: var(--text); margin-bottom: .9rem;
+}
+.hero h1 span { color: var(--blue); }
+.hero-sub { font-size: clamp(.95rem, 2.5vw, 1.3rem); color: var(--text-muted); margin-bottom: .9rem; }
+.hero-desc { max-width: 510px; margin: 0 auto 2.4rem; font-size: .9rem; color: var(--text-muted); line-height: 1.75; }
+.ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 4.5rem; }
+.btn-p {
+  display: inline-flex; align-items: center; gap: .45rem;
+  background: var(--blue); color: #fff; padding: .82rem 1.75rem;
+  border-radius: 12px; font-size: .88rem; font-weight: 600; text-decoration: none;
+  box-shadow: 0 4px 20px rgba(33,150,196,.35); transition: transform .2s, box-shadow .2s;
+}
+.btn-p:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(33,150,196,.45); }
+.btn-s {
+  display: inline-flex; align-items: center; gap: .45rem;
+  background: #fff; color: var(--text); padding: .82rem 1.75rem;
+  border-radius: 12px; font-size: .88rem; font-weight: 600; text-decoration: none;
+  border: 1px solid rgba(0,0,0,.11); transition: transform .2s, box-shadow .2s;
+}
+.btn-s:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.1); }
+
+.stats { display: flex; gap: 4rem; justify-content: center; flex-wrap: wrap; }
+.stat-n { font-size: 2.1rem; font-weight: 800; color: var(--blue); line-height: 1; }
+.stat-l { font-size: .78rem; color: var(--text-muted); margin-top: .25rem; }
+
+/* ABOUT */
+.about { padding: 5rem 0; }
+.stag { font-size: .78rem; color: var(--blue); font-weight: 600; margin-bottom: .4rem; }
+.stitle { font-size: clamp(1.7rem, 4vw, 2.7rem); font-weight: 900; color: var(--text); line-height: 1.1; margin-bottom: 1.5rem; }
+.stitle span { color: var(--blue); }
+.ag { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.at p { font-size: .92rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.1rem; }
+.acards { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; margin-top: 1.4rem; }
+.acard { background: #fff; border-radius: 14px; padding: 1.1rem; border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+.acard-ico { font-size: 1.2rem; margin-bottom: .4rem; }
+.acard-lbl { font-size: .64rem; color: var(--text-light); text-transform: uppercase; letter-spacing: .08em; }
+.acard-val { font-size: .88rem; font-weight: 600; color: var(--text); }
+.photo-wrap { display: flex; align-items: center; justify-content: center; }
+.rings {
+  width: 320px; height: 320px; border-radius: 50%;
+  border: 1px solid rgba(33,150,196,.2);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.rings::before { content:''; position:absolute; inset:18px; border-radius:50%; border:1px solid rgba(33,150,196,.13); }
+.circ {
+  width: 248px; height: 248px; border-radius: 50%;
+  background: linear-gradient(135deg,#ddeef7,#c5e0ef);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 4.5rem; font-weight: 900; color: var(--blue); opacity: .22; user-select: none;
+  letter-spacing: -.05em;
+}
+.pb1 { position:absolute;top:18px;right:8px;width:46px;height:46px;border-radius:50%;background:rgba(33,150,196,.12);display:flex;align-items:center;justify-content:center;font-size:1.3rem; }
+.pb2 { position:absolute;bottom:28px;left:8px;width:38px;height:38px;border-radius:50%;background:rgba(33,150,196,.1);display:flex;align-items:center;justify-content:center;font-size:1.05rem; }
+
+/* WORK */
+.work { padding: 5rem 0; }
+.sh { text-align: center; margin-bottom: 2.8rem; }
+.sh p { color: var(--text-muted); font-size: .9rem; max-width: 490px; margin: .65rem auto 0; }
+.pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+.pcard { border-radius: 18px; padding: 1.8rem; border: 1px solid rgba(255,255,255,.55); transition: transform .25s, box-shadow .25s; cursor: default; }
+.pcard:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,.1); }
+.pcard.bl { background: linear-gradient(135deg,rgba(198,230,244,.6),rgba(218,240,252,.4)); }
+.pcard.gr { background: linear-gradient(135deg,rgba(198,238,222,.6),rgba(218,247,236,.4)); }
+.pcard.pu { background: linear-gradient(135deg,rgba(222,213,250,.6),rgba(236,228,252,.4)); }
+.pcard.pi { background: linear-gradient(135deg,rgba(251,218,228,.6),rgba(254,233,241,.4)); }
+.pico { font-size: 1.7rem; margin-bottom: .9rem; }
+.pcat { font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .65rem; }
+.pdiv { height: 1px; margin-bottom: .65rem; opacity: .2; }
+.pdesc { font-size: .82rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.1rem; }
+.ptags { display: flex; flex-wrap: wrap; gap: .45rem; }
+.ptag { font-size: .7rem; padding: .22rem .7rem; border-radius: 999px; background: rgba(255,255,255,.75); border: 1px solid rgba(0,0,0,.08); color: var(--text-muted); }
+
+/* EXPERIENCE */
+.experience { padding: 5rem 0; }
+.timeline { position: relative; margin-top: 3rem; }
+.tline { position: absolute; left: 50%; transform: translateX(-50%); top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--blue), rgba(33,150,196,.08)); }
+.titem { display: grid; grid-template-columns: 1fr 24px 1fr; gap: 1.4rem; margin-bottom: 2rem; align-items: start; opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+.titem.vis { opacity: 1; transform: translateY(0); }
+.tdot { width: 12px; height: 12px; border-radius: 50%; background: var(--blue); border: 3px solid var(--bg); box-shadow: 0 0 0 2px var(--blue); margin: 1.5rem auto 0; justify-self: center; }
+.tcard { background: #fff; border-radius: 16px; padding: 1.5rem; border: 1px solid var(--border); box-shadow: 0 2px 14px rgba(0,0,0,.06); }
+.tc-top { display: flex; align-items: flex-start; justify-content: space-between; gap: .5rem; margin-bottom: .2rem; }
+.tc-co { font-size: .98rem; font-weight: 700; color: var(--text); }
+.tc-badge { font-size: .63rem; padding: .18rem .58rem; border-radius: 999px; font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+.tc-badge.cur { background: rgba(33,150,196,.13); color: var(--blue); }
+.tc-badge.prv { background: rgba(245,166,35,.12); color: #b8820a; }
+.tc-role { font-size: .86rem; color: var(--blue); font-weight: 600; margin-bottom: .7rem; }
+.tc-meta { display: flex; flex-direction: column; gap: .18rem; margin-bottom: .9rem; }
+.tc-mr { display: flex; align-items: center; gap: .35rem; font-size: .76rem; color: var(--text-muted); }
+.tc-pts { list-style: none; }
+.tc-pts li { font-size: .79rem; color: var(--text-muted); line-height: 1.6; padding: .18rem 0 .18rem 1.1rem; position: relative; }
+.tc-pts li::before { content:'›'; position:absolute;left:0;color:var(--blue);font-size:1rem;line-height:1.4;font-weight:700; }
+
+/* SKILLS */
+.skills { padding: 5rem 0; }
+.slayout { display: grid; grid-template-columns: 2fr 1fr; gap: 1.4rem; align-items: start; }
+.scard { background: #fff; border-radius: 20px; padding: 2rem; border: 1px solid var(--border); box-shadow: 0 2px 18px rgba(0,0,0,.06); }
+.scard-title { display: flex; align-items: center; gap: .65rem; font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 1.8rem; }
+.sgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 2rem; }
+.srow {}
+.slr { display: flex; justify-content: space-between; margin-bottom: .35rem; }
+.sname { font-size: .83rem; color: var(--text); }
+.spct { font-size: .83rem; color: var(--blue); font-weight: 700; }
+.strack { height: 6px; background: #e6edf3; border-radius: 999px; overflow: hidden; }
+.sfill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--blue-dark), var(--blue-light)); width: 0%; transition: width 1.2s ease; }
+.rcard { background: #fff; border-radius: 20px; padding: 1.8rem; border: 1px solid var(--border); box-shadow: 0 2px 18px rgba(0,0,0,.06); text-align: center; }
+.rcard-title { font-size: .92rem; font-weight: 700; color: var(--blue); margin-bottom: 1.4rem; }
+
+/* CONTACT */
+.contact { padding: 5rem 0 4rem; }
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2.8rem; align-items: start; }
+.cinfo-card { background: #fff; border-radius: 20px; padding: 2rem; border: 1px solid var(--border); box-shadow: 0 2px 14px rgba(0,0,0,.06); }
+.cinfo-title { font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 1.4rem; }
+.cinfo-rows { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.6rem; }
+.cinfo-row { display: flex; align-items: center; gap: 1rem; background: #f4f7fa; border-radius: 12px; padding: .85rem 1rem; }
+.cinfo-icon-box { width: 38px; height: 38px; border-radius: 10px; background: rgba(33,150,196,.12); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+.cinfo-lbl { font-size: .7rem; color: var(--text-light); margin-bottom: .1rem; }
+.cinfo-val { font-size: .88rem; font-weight: 600; color: var(--text); }
+.cinfo-btns { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.cbtn-primary { display: flex; align-items: center; justify-content: center; gap: .5rem; background: var(--blue); color: #fff; padding: .82rem 1rem; border-radius: 12px; font-size: .86rem; font-weight: 600; text-decoration: none; border: none; cursor: pointer; transition: opacity .2s; }
+.cbtn-primary:hover { opacity: .88; }
+.cbtn-secondary { display: flex; align-items: center; justify-content: center; gap: .5rem; background: #fff; color: var(--text); padding: .82rem 1rem; border-radius: 12px; font-size: .86rem; font-weight: 600; text-decoration: none; border: 1px solid rgba(0,0,0,.12); cursor: pointer; transition: border-color .2s; }
+.cbtn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+/* Form card */
+.cform-card { background: #fff; border-radius: 20px; padding: 2rem; border: 1px solid var(--border); box-shadow: 0 2px 14px rgba(0,0,0,.06); }
+.cform-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; margin-bottom: .9rem; }
+.cform-group { display: flex; flex-direction: column; gap: .35rem; margin-bottom: .9rem; }
+.cform-group label { font-size: .82rem; font-weight: 600; color: var(--text); }
+.cform-group input, .cform-group textarea {
+  background: #f2f5f8; border: 1px solid transparent; border-radius: 10px;
+  padding: .72rem 1rem; font-size: .85rem; color: var(--text);
+  font-family: inherit; outline: none; transition: border-color .2s;
+  resize: none;
+}
+.cform-group input::placeholder, .cform-group textarea::placeholder { color: var(--text-light); }
+.cform-group input:focus, .cform-group textarea:focus { border-color: var(--blue); background: #fff; }
+.cform-group textarea { height: 130px; }
+.cform-submit { width: 100%; display: flex; align-items: center; justify-content: center; gap: .55rem; background: var(--blue); color: #fff; padding: .9rem; border-radius: 12px; font-size: .9rem; font-weight: 700; border: none; cursor: pointer; transition: opacity .2s; box-shadow: 0 4px 18px rgba(33,150,196,.3); }
+.cform-submit:hover { opacity: .88; }
+
+footer { text-align: center; padding: 1.5rem; font-size: .76rem; color: var(--text-light); border-top: 1px solid var(--border); position: relative; z-index: 1; }
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .ag,.pgrid,.slayout,.cgrid{grid-template-columns:1fr}
+  .tline{left:16px}
+  .titem{grid-template-columns:24px 1fr}
+  .titem .tdot{grid-column:1;grid-row:1}
+  .titem .tcard{grid-column:2;grid-row:1}
+  .tempty{display:none}
+  .sgrid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- BACKGROUND SCATTERED ICONS -->
+<div class="bg-layer" aria-hidden="true">
+  <span class="bi" style="top:5%;left:7%;font-size:2rem">⚡</span>
+  <span class="bi" style="top:11%;left:43%;font-size:.9rem">🔔</span>
+  <span class="bi" style="top:6%;right:16%;font-size:1.4rem">⚡</span>
+  <span class="bi" style="top:20%;right:5%;font-size:1rem">📱</span>
+  <span class="bi" style="top:33%;left:3%;font-size:.95rem">📋</span>
+  <span class="bi" style="top:45%;left:10%;font-size:.85rem">▦</span>
+  <span class="bi" style="top:58%;left:2%;font-size:1rem">📄</span>
+  <span class="bi" style="top:70%;left:8%;font-size:.8rem">▦</span>
+  <span class="bi" style="top:15%;right:28%;font-size:.7rem">＋</span>
+  <span class="bi" style="top:28%;right:10%;font-size:1rem">📡</span>
+  <span class="bi" style="top:43%;right:3%;font-size:.9rem">🔌</span>
+  <span class="bi" style="top:54%;right:12%;font-size:.95rem">📋</span>
+  <span class="bi" style="top:68%;right:7%;font-size:.8rem">▦</span>
+  <span class="bi" style="top:78%;left:18%;font-size:1.1rem">⚡</span>
+  <span class="bi" style="top:83%;right:20%;font-size:1rem">🔔</span>
+  <span class="bi" style="top:92%;left:35%;font-size:.9rem">📄</span>
+  <span class="bi" style="top:38%;left:52%;font-size:.7rem">·</span>
+  <span class="bi" style="top:62%;left:72%;font-size:.7rem">·</span>
+  <span class="bi" style="top:25%;left:80%;font-size:.8rem">⚙️</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-av">EO</div>
+    <span class="nav-nm">Eric <span>Onsongo</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:ericxonsongo@gmail.com" class="nav-cta">📄 Resume</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge"><span class="bdot"></span> Available for opportunities</div>
+  <h1>I'm <span>Eric Onsongo</span></h1>
+  <div class="hero-sub">Senior Power Systems Technician &amp; IT Professional</div>
+  <p class="hero-desc">Driving Kenya's energy reliability through industrial power management, revenue protection, and 13+ years of frontline expertise at Kenya Power &amp; Lighting Co. Ltd.</p>
+  <div class="ctas">
+    <a href="#experience" class="btn-p">✦ View My Work &darr;</a>
+    <a href="#contact" class="btn-s">Let's Connect</a>
+  </div>
+  <div class="stats">
+    <div><div class="stat-n">13+</div><div class="stat-l">Years at Kenya Power</div></div>
+    <div><div class="stat-n">220kV</div><div class="stat-l">Max System Voltage</div></div>
+    <div><div class="stat-n">2</div><div class="stat-l">Engineering Disciplines</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="ag">
+      <div class="at">
+        <div class="stag">About Me</div>
+        <div class="stitle">Powering Kenya's<br><span>Energy Future</span></div>
+        <p>I'm a results-driven power systems professional with over 13 years at Kenya Power &amp; Lighting Co. Ltd., specialising in large industrial and commercial power accounts spanning LV 415V to HV 220kV across Mombasa County.</p>
+        <p>My expertise bridges deep electrical engineering — revenue protection, power quality analysis, feeder energy balance — with a Bachelor of Science in Information Technology, connecting field operations with digital energy management systems. Bilingual in English and Kiswahili.</p>
+        <div class="acards">
+          <div class="acard"><div class="acard-ico">📍</div><div class="acard-lbl">Based in</div><div class="acard-val">Mombasa, Kenya</div></div>
+          <div class="acard"><div class="acard-ico">🎓</div><div class="acard-lbl">Education</div><div class="acard-val">BSc IT &amp; HND Electrical Eng.</div></div>
+        </div>
+      </div>
+      <div class="photo-wrap">
+        <div class="rings">
+          <div class="pb1">⚡</div>
+          <div class="pb2">🔌</div>
+          <div class="circ">EO</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="container">
+    <div class="sh">
+      <div class="stitle">Featured <span>Projects</span></div>
+      <p>Key areas of expertise delivering reliable power infrastructure and energy solutions across Mombasa County.</p>
+    </div>
+    <div class="pgrid">
+      <div class="pcard bl">
+        <div class="pico">⚡</div>
+        <div class="pcat" style="color:var(--blue)">LARGE POWER &amp; HV MANAGEMENT</div>
+        <div class="pdiv" style="background:var(--blue)"></div>
+        <p class="pdesc">Managing all large industrial power accounts across Mombasa County — spanning Low Voltage (415V) to High Tension (220kV) — ensuring regulatory compliance and driving revenue growth through contracting and new connections.</p>
+        <div class="ptags"><span class="ptag">HV Systems</span><span class="ptag">415V–220kV</span><span class="ptag">Mombasa County</span><span class="ptag">KPLC</span></div>
+      </div>
+      <div class="pcard gr">
+        <div class="pico">🛡️</div>
+        <div class="pcat" style="color:#1a9e6e">REVENUE PROTECTION &amp; LOSS PREVENTION</div>
+        <div class="pdiv" style="background:#1a9e6e"></div>
+        <p class="pdesc">Leading revenue collection and commercial loss prevention — executing inspections, anomaly resolution and account debiting to consistently meet or exceed monthly billing targets across the coast region.</p>
+        <div class="ptags"><span class="ptag">Revenue Protection</span><span class="ptag">Energy Balance</span><span class="ptag">Feeder Management</span></div>
+      </div>
+      <div class="pcard pu">
+        <div class="pico">📊</div>
+        <div class="pcat" style="color:#7c4ddb">POWER QUALITY &amp; METERING</div>
+        <div class="pdiv" style="background:#7c4ddb"></div>
+        <p class="pdesc">Conducting power quality inspections, load verification, meter installation and replacement for industrial consumers — maintaining data integrity and alarm event resolution across all assigned zones.</p>
+        <div class="ptags"><span class="ptag">Power Quality</span><span class="ptag">Industrial Metering</span><span class="ptag">Load Verification</span></div>
+      </div>
+      <div class="pcard pi">
+        <div class="pico">💻</div>
+        <div class="pcat" style="color:#d4457a">IT &amp; DIGITAL SYSTEMS</div>
+        <div class="pdiv" style="background:#d4457a"></div>
+        <p class="pdesc">Bridging field operations with digital energy management through IT expertise — CCNA networking, cybersecurity fundamentals, and information systems supporting energy data integrity and operational efficiency.</p>
+        <div class="ptags"><span class="ptag">CCNA</span><span class="ptag">Cybersecurity</span><span class="ptag">Network Admin</span><span class="ptag">BSc IT</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="container">
+    <div class="sh"><div class="stitle">Professional <span>Experience</span></div></div>
+    <div class="timeline">
+      <div class="tline"></div>
+
+      <div class="titem">
+        <div class="tcard">
+          <div class="tc-top"><span class="tc-co">Kenya Power &amp; Lighting Co.</span><span class="tc-badge cur">Current</span></div>
+          <div class="tc-role">Senior Technician II – Large Power &amp; SME</div>
+          <div class="tc-meta">
+            <div class="tc-mr">📅 2019 – Present</div>
+            <div class="tc-mr">📍 Coast Region, Mombasa County</div>
+          </div>
+          <ul class="tc-pts">
+            <li>Manage all large industrial power accounts (415V–220kV) across Mombasa County.</li>
+            <li>Conduct power quality inspections and load verification for industrial consumers.</li>
+            <li>Lead revenue collection and billing, consistently meeting monthly targets.</li>
+            <li>Execute revenue protection and resolve field anomalies to minimise commercial losses.</li>
+            <li>Participate in Feeder Energy Balance for accurate reporting and loss reduction.</li>
+          </ul>
+        </div>
+        <div class="tdot"></div>
+        <div class="tempty"></div>
+      </div>
+
+      <div class="titem">
+        <div class="tempty"></div>
+        <div class="tdot"></div>
+        <div class="tcard">
+          <div class="tc-top"><span class="tc-co">Kenya Power &amp; Lighting Co.</span><span class="tc-badge prv">Previous</span></div>
+          <div class="tc-role">Meter Reading Supervisor</div>
+          <div class="tc-meta">
+            <div class="tc-mr">📅 2012 – 2019</div>
+            <div class="tc-mr">📍 Mombasa, Kenya</div>
+          </div>
+          <ul class="tc-pts">
+            <li>Supervised meter reading operations ensuring 100% itinerary coverage within scheduled cycles.</li>
+            <li>Maintained zero-consumption and consecutive-estimates reports to flag anomalies.</li>
+            <li>Managed the meter reading calendar across all assigned zones.</li>
+            <li>Trained and supervised field teams to uphold quality standards and operational efficiency.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="titem">
+        <div class="tcard">
+          <div class="tc-top"><span class="tc-co">MFI Office Solutions Ltd.</span><span class="tc-badge prv">Previous</span></div>
+          <div class="tc-role">Service Technician</div>
+          <div class="tc-meta">
+            <div class="tc-mr">📅 2010 – 2012</div>
+            <div class="tc-mr">📍 Kenya</div>
+          </div>
+          <ul class="tc-pts">
+            <li>Installed Kyocera photocopier machines at client sites with full configuration.</li>
+            <li>Diagnosed and repaired faulty reprographic equipment, reducing client downtime.</li>
+            <li>Managed renewal of service contracts, contributing to client retention and revenue.</li>
+          </ul>
+        </div>
+        <div class="tdot"></div>
+        <div class="tempty"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <div class="container">
+    <div class="sh">
+      <div class="stag">My Expertise</div>
+      <div class="stitle">Skills &amp; <span>Expertise</span></div>
+    </div>
+    <div class="slayout">
+      <div class="scard">
+        <div class="scard-title"><span>⚡</span><span>🔌</span> Core Competencies</div>
+        <div class="sgrid">
+          <div class="srow"><div class="slr"><span class="sname">Large Power Management</span><span class="spct">95%</span></div><div class="strack"><div class="sfill" data-w="95"></div></div></div>
+          <div class="srow"><div class="slr"><span class="sname">HV/LV Systems</span><span class="spct">93%</span></div><div class="strack"><div class="sfill" data-w="93"></div></div></div>
+          <div class="srow"><div class="slr"><span class="sname">Revenue Protection</span><span class="spct">92%</span></div><div class="strack"><div class="sfill" data-w="92"></div></div></div>
+          <div class="srow"><div class="slr"><span class="sname">Power Quality Analysis</span><span class="spct">90%</span></div><div class="strack"><div class="sfill" data-w="90"></div></div></div>
+          <div class="srow"><div class="slr"><span class="sname">Energy Balance</span><span class="spct">88%</span></div><div class="strack"><div class="sfill" data-w="88"></div></div></div>
+          <div class="srow"><div class="slr"><span class="sname">Industrial Metering</span><span class="spct">91%</span></div><div class="strack"><div class="sfill" data-w="91"></div></div></div>
+          <div class="srow"><div class="slr"><span class="sname">Network Admin (CCNA)</span><span class="spct">75%</span></div><div class="strack"><div class="sfill" data-w="75"></div></div></div>
+          <div class="srow"><div class="slr"><span class="sname">Cybersecurity</span><span class="spct">70%</span></div><div class="strack"><div class="sfill" data-w="70"></div></div></div>
+        </div>
+      </div>
+      <div class="rcard">
+        <div class="rcard-title">Skill Overview</div>
+        <canvas id="rc" width="260" height="260"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="sh">
+      <div class="stitle">Get In <span>Touch</span></div>
+      <p>Open to new opportunities and collaborations in power systems and energy management across Kenya.</p>
+    </div>
+    <div class="contact-layout">
+      <!-- Left: Contact Info -->
+      <div class="cinfo-card">
+        <div class="cinfo-title">Contact Information</div>
+        <div class="cinfo-rows">
+          <div class="cinfo-row">
+            <div class="cinfo-icon-box">✉️</div>
+            <div><div class="cinfo-lbl">Email</div><div class="cinfo-val">ericxonsongo@gmail.com</div></div>
+          </div>
+          <div class="cinfo-row">
+            <div class="cinfo-icon-box">📞</div>
+            <div><div class="cinfo-lbl">Phone</div><div class="cinfo-val">+254 724-556-823</div></div>
+          </div>
+          <div class="cinfo-row">
+            <div class="cinfo-icon-box">📍</div>
+            <div><div class="cinfo-lbl">Location</div><div class="cinfo-val">Mombasa, Kenya</div></div>
+          </div>
+        </div>
+        <div class="cinfo-btns">
+          <a href="tel:+254724556823" class="cbtn-primary">📞 Call Now</a>
+          <a href="mailto:ericxonsongo@gmail.com" class="cbtn-secondary">✉️ Send Email</a>
+        </div>
+      </div>
+      <!-- Right: Contact Form -->
+      <div class="cform-card">
+        <div class="cform-row2">
+          <div class="cform-group"><label>Name</label><input type="text" placeholder="Your name" /></div>
+          <div class="cform-group"><label>Email</label><input type="email" placeholder="your@email.com" /></div>
+        </div>
+        <div class="cform-group"><label>Subject</label><input type="text" placeholder="What's this about?" /></div>
+        <div class="cform-group"><label>Message</label><textarea placeholder="Tell me about your project..."></textarea></div>
+        <button class="cform-submit">➤ Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2025 Eric Mokaya Onsongo &nbsp;·&nbsp; Senior Power Systems Technician &nbsp;·&nbsp; Kenya Power &amp; Lighting Co. Ltd.</footer>
+
+<script>
+// Scroll reveal for timeline
+const obs = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target);}})},{threshold:.1});
+document.querySelectorAll('.titem').forEach(el=>obs.observe(el));
+
+// Skill bars
+const bobs = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.sfill').forEach(b=>b.style.width=b.dataset.w+'%');bobs.unobserve(e.target);}})},{threshold:.3});
+document.querySelectorAll('.scard').forEach(el=>bobs.observe(el));
+
+// Radar
+(()=>{
+  const c=document.getElementById('rc'); if(!c)return;
+  const x=c.getContext('2d'), W=c.width, H=c.height, cx=W/2, cy=H/2, R=W*.36;
+  const labels=['Large Power','HV/LV','Revenue','Pwr Quality','Metering','IT/CCNA'];
+  const vals=[.95,.93,.92,.90,.91,.75];
+  const n=labels.length;
+  const pt=(i,r)=>({x:cx+r*Math.cos(Math.PI*2/n*i-Math.PI/2), y:cy+r*Math.sin(Math.PI*2/n*i-Math.PI/2)});
+  for(let r=1;r<=5;r++){x.beginPath();for(let i=0;i<n;i++){const p=pt(i,R*r/5);i?x.lineTo(p.x,p.y):x.moveTo(p.x,p.y);}x.closePath();x.strokeStyle='rgba(33,150,196,.13)';x.lineWidth=1;x.stroke();}
+  for(let i=0;i<n;i++){const p=pt(i,R);x.beginPath();x.moveTo(cx,cy);x.lineTo(p.x,p.y);x.strokeStyle='rgba(33,150,196,.15)';x.lineWidth=1;x.stroke();}
+  x.beginPath();for(let i=0;i<n;i++){const p=pt(i,R*vals[i]);i?x.lineTo(p.x,p.y):x.moveTo(p.x,p.y);}x.closePath();x.fillStyle='rgba(33,150,196,.18)';x.fill();x.strokeStyle='rgba(33,150,196,.8)';x.lineWidth=2;x.stroke();
+  for(let i=0;i<n;i++){const p=pt(i,R*vals[i]);x.beginPath();x.arc(p.x,p.y,4,0,Math.PI*2);x.fillStyle='#2196c4';x.fill();}
+  x.fillStyle='#6b7a8d';x.font='9.5px Segoe UI,sans-serif';x.textAlign='center';
+  for(let i=0;i<n;i++){const p=pt(i,R+20);x.fillText(labels[i],p.x,p.y+3);}
+})();
+</script>
+</body>
+</html>
